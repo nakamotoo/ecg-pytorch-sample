@@ -13,6 +13,8 @@ import ecg
 print("\nNEW EXPERIMENT!!", sys.argv[1], sys.argv[2], sys.argv[3])
 
 filelist_name = "FileList_{}.csv".format(sys.argv[3])
+
+# ecgデータの置き場所を指定
 data_folder="./data"
 
 mean, std = ecg.utils.get_mean_and_std(ecg.datasets.ECG(split="train", filelist_name=filelist_name, data_folder=data_folder), num_workers=8)
@@ -57,8 +59,8 @@ elif sys.argv[2] == "sgd":
     optimizer = optim.SGD(net.parameters(), lr=lr, momentum=0.9)
 
 loss_function = nn.BCEWithLogitsLoss(reduction="none", pos_weight=torch.tensor(pos_weight))
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=4, verbose=True)
-early_stopping = ecg.utils.EarlyStopping(patience=10, verbose=True, path=os.path.join(output, "best.pt"))
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=3, verbose=True)
+early_stopping = ecg.utils.EarlyStopping(patience=5, verbose=True, path=os.path.join(output, "best.pt"))
 
 losses_train_all = []
 losses_valid_all = []

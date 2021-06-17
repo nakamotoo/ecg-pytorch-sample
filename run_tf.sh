@@ -1,5 +1,5 @@
 #!/bin/bash
-for outcome in MR
+for outcome in AR
     do for optim in adam
         do for nhead in 2 4
             do for nlayers in 1 3

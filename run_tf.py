@@ -13,16 +13,16 @@ import ecg
 print("\nNEW EXPERIMENT!!", sys.argv[1], sys.argv[2], sys.argv[3])
 
 filelist_name = "FileList_{}.csv".format(sys.argv[3])
-data_folder="./data"
+data_folder="../ecg-all/data"
 
-mean, std = ecg.utils.get_mean_and_std(ecg.datasets.ECG(split="train", filelist_name=filelist_name, data_folder=data_folder), num_workers=8)
+mean, std = ecg.utils.get_mean_and_std(ecg.datasets.ECG(split="train", filelist_name=filelist_name, data_folder=data_folder), num_workers=8, samples=10)
 
 # Model_2D. Model_1DRes, Model_WaveNet, Model_TFEncoder
 modelname = sys.argv[1]
 nhead = int(sys.argv[4])
 nlayers = int(sys.argv[5])
 
-output = os.path.join("output_debug", sys.argv[3], "{}_{}_h{}_l{}".format(modelname, sys.argv[2], nhead, nlayers))
+output = os.path.join("output", sys.argv[3], "{}_{}_h{}_l{}".format(modelname, sys.argv[2], nhead, nlayers))
 os.makedirs(output, exist_ok=True)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -59,8 +59,8 @@ elif sys.argv[2] == "sgd":
     optimizer = optim.SGD(net.parameters(), lr=lr, momentum=0.9)
 
 loss_function = nn.BCEWithLogitsLoss(reduction="none", pos_weight=torch.tensor(pos_weight))
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=4, verbose=True)
-early_stopping = ecg.utils.EarlyStopping(patience=2, verbose=True, path=os.path.join(output, "best.pt"))
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=3, verbose=True)
+early_stopping = ecg.utils.EarlyStopping(patience=5, verbose=True, path=os.path.join(output, "best.pt"))
 
 losses_train_all = []
 losses_valid_all = []

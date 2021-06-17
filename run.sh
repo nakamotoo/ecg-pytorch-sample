@@ -1,5 +1,5 @@
 #!/bin/bash
-for outcome in MR
+for outcome in AR
 do
 echo $outcome
 python run.py Model_1DRes adam $outcome
