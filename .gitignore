@@ -3,10 +3,10 @@ __pycache__/
 __pycache__/
 .DS_Store
 
-!/data/Labels/SAMPLE.csv
-!/data/FileLists/FileList_SAMPLE.csv
 /data/Labels/*.csv
 /data/FileLists/*.csv
 /data/*.csv
 /data/ecg/*.csv
+!/data/Labels/SAMPLE.csv
+!/data/FileLists/FileList_SAMPLE.csv
 output/*
