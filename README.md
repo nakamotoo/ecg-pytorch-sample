@@ -14,10 +14,9 @@ If you run `data/FileList_Maker.ipynb `, a file named FileList_{outcome}.csv wil
 Run `./run.sh` to train the models!<br>
 
 ## Else:
-You can add various models under `ecg/models` <br>
+You can add various models to `ecg/models` <br>
 `train.py` : training code for CNN models. <br>
 `train_tf.py` : training code for Transformer models (with saving the attention maps at the same time). <br>
-you can directly run a 
 
 
 
