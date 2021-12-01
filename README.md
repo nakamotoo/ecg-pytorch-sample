@@ -1,3 +1,21 @@
+This is a PyTorch implementation for training deep learning models for 12-lead ECGs (2D-CNN, 1D-CNN, Transformer)
+
+## Step1: Placing the raw data.
+
+Place the raw csv files of ECG under `data/ecg`．
+
+## Step2: Generate FileList.csv
+
+Next, we should split the data into train/valid/test dataset and generate a FileList．<br>
+Place the csv for annotated labels under `data/Labels`，<br>
+If you run `data/FileList_Maker.ipynb `, a file named FileList_{outcome}.csv will be generated under `data/FileLists`
+
+## Step3: Training
+Run `./run.sh` to train the models!<br>
+
+
+
+
 ## 生データの配置
 
 まずは生のecgデータを配置する必要があります．
